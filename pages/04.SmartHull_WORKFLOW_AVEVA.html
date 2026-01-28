@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>SmartHull - WORKFLOW (AVEVA)</title>
+  <style>
+    :root{
+      --w:1920px; --h:1080px;
+      --bg1:#ffffff; --bg2:#f4f9ff; --bg3:#e7f2ff;
+      --text:#0b1324; --muted:#4b5563;
+      --blue:#2f80ed; --blue2:#67b3ff;
+      --line:rgba(11,19,36,.10);
+      --font:"Noto Sans KR","Segoe UI",Roboto,Helvetica,Arial,"Malgun Gothic",system-ui,sans-serif;
+    }
+    html,body{
+      height:100%; margin:0;
+      display:grid; place-items:center;
+      background:#0b1220;
+      font-family:var(--font);
+    }
+    .slide{
+      width:var(--w); height:var(--h);
+      background:
+        radial-gradient(1200px 720px at 80% 20%, var(--bg3), transparent 60%),
+        radial-gradient(900px 640px at 15% 85%, var(--bg2), transparent 55%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      border-radius:16px;
+      box-shadow:0 18px 40px rgba(15,23,42,.12);
+      padding:96px 120px;
+      box-sizing:border-box;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap:56px;
+    }
+    h1{
+      margin:0;
+      font-size:64px;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr 120px 1fr 120px 1fr;
+      align-items: stretch;
+    }
+
+    .box{
+      height: 100%;
+      background:#fff;
+      border-radius:28px;
+      padding:40px;
+      border:1px solid rgba(11,19,36,.08);
+      display:grid;
+      grid-template-rows:auto auto 1fr;
+      gap:22px;
+    }
+
+    .box.blue{
+      background:linear-gradient(180deg,#eef5ff,#ffffff);
+      border-color:rgba(47,128,237,.35);
+    }
+
+    .title{
+      font-size:48px;
+      font-weight:800;
+      text-align:center;
+      line-height:1.12;
+    }
+
+    .subTitle{
+      font-size:30px;
+      font-weight:800;
+      color:#1f2937;
+      opacity:.85;
+      letter-spacing:-0.01em;
+    }
+
+    .sub{
+      font-size:24px;
+      color:var(--muted);
+      text-align:center;
+      line-height:1.35;
+    }
+
+    .arrow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      align-self: stretch;
+    }
+    .arrow .shaft{
+      width:80px;
+      height:10px;
+      background:linear-gradient(90deg, rgba(47,128,237,.25), rgba(47,128,237,.8));
+      border-radius:999px;
+      box-shadow:0 10px 18px rgba(47,128,237,.12);
+    }
+    .arrow .head{
+      width:0; height:0;
+      border-top:22px solid transparent;
+      border-bottom:22px solid transparent;
+      border-left:32px solid rgba(47,128,237,.85);
+      margin-left:8px;
+      filter: drop-shadow(0 10px 14px rgba(47,128,237,.14));
+    }
+
+    /* File icons grid */
+    .files{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      margin-top:6px;
+    }
+    .file{
+      display:grid;
+      grid-template-columns: 54px 1fr;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(11,19,36,.08);
+      background:linear-gradient(180deg,#ffffff,#f8fbff);
+    }
+    .file .meta{ display:grid; gap:2px; }
+    .file .code{
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      color:var(--text);
+      line-height:1.1;
+    }
+    .file .desc{
+      font-size:18px;
+      color:var(--muted);
+      line-height:1.2;
+    }
+
+    .docIcon{
+      width:54px; height:54px;
+      border-radius:16px;
+      background:linear-gradient(135deg, rgba(47,128,237,.18), rgba(103,179,255,.12));
+      border:1px solid rgba(47,128,237,.22);
+      display:grid;
+      place-items:center;
+    }
+    .docIcon svg{ width:30px; height:30px; }
+
+    ul{
+      margin:0;
+      padding-left:26px;
+      font-size:26px;
+      line-height:1.5;
+      color:#1f2937;
+    }
+    li{ margin:10px 0; }
+
+    /* Highlight only the history item */
+    .box.blue ul li.history{
+      margin-top: 8px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(47,128,237,.14), rgba(255,255,255,.80));
+      border: 1px solid rgba(47,128,237,.30);
+      color: #0b1324;
+      font-weight: 900;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-start;
+      text-align: left;
+      width: 100%;
+      box-sizing: border-box;
+      margin-left: -10px;
+    }
+    .hisIcon{
+      width: 34px;
+      height: 34px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 12px;
+      background: rgba(47,128,237,.10);
+      border: 1px solid rgba(47,128,237,.22);
+      flex: 0 0 auto;
+    }
+    .hisIcon svg{ width: 22px; height: 22px; }
+    .hisText{ display:inline-block; }
+
+    @media (max-width:2100px){
+      .slide{ transform:scale(.8); transform-origin:center; }
+    }
+  </style>
+</head>
+<body>
+<section class="slide">
+  <h1>WORKFLOW</h1>
+
+  <div class="flow">
+    <!-- AVEVA -->
+    <div class="box">
+      <div class="title">AVEVA</div>
+      <div class="sub">AVEVA DB에서 Interface 파일 추출</div>
+
+      <div class="files">
+        <!-- INFORM -->
+        <div class="file">
+          <div class="docIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M8 13h8M8 17h6" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="code">INFORM</div>
+            <div class="desc">Part List</div>
+          </div>
+        </div>
+
+        <!-- 형상 -->
+        <div class="file">
+          <div class="docIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M9 14l2-2 2 2 3-3" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="code">형상</div>
+            <div class="desc">Geometry</div>
+          </div>
+        </div>
+
+        <!-- MODEL -->
+        <div class="file">
+          <div class="docIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M9 12h6M9 15h8M9 18h5" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="code">MODEL</div>
+            <div class="desc">Modeling Info</div>
+          </div>
+        </div>
+
+        <!-- ASSEMBLY -->
+        <div class="file">
+          <div class="docIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M9 14h6" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M9 17h8" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="9" cy="14" r="1" fill="rgba(47,128,237,.75)"/>
+              <circle cx="9" cy="17" r="1" fill="rgba(47,128,237,.75)"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="code">ASSEMBLY</div>
+            <div class="desc">Assembly List</div>
+          </div>
+        </div>
+
+        <!-- 3D Model -->
+        <div class="file">
+          <div class="docIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M9 12h6M9 15h8M9 18h5" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="code">3D Model</div>
+            <div class="desc">Curved</div>
+          </div>
+        </div>
+
+        <!-- 3D Model -->
+        <div class="file">
+          <div class="docIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="rgba(47,128,237,.95)" stroke-width="1.8"/>
+              <path d="M8.5 12.5h7M8.5 16h7" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M8.5 19.5h5" stroke="rgba(47,128,237,.75)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="code">3D Model</div>
+            <div class="desc">Planar</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+
+    <!-- SmartHull -->
+    <div class="box blue">
+      <div class="title">SmartHull<br/><span class="subTitle">Interface &amp; Management</span></div>
+      <div class="sub">추출 데이터 기반 자동 구성/정리</div>
+      <ul>
+        <li>Interface File 통합 관리</li>
+        <li>호선 / 블록 / 부재 생성</li>
+        <li>형강 자동 Customize</li>
+        <li>부재 편집 및 검증</li>
+        <li class="history">
+          <span class="hisIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7.5 7.5H4.5v-3" stroke="rgba(47,128,237,.95)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4.8 10.2a8 8 0 1 1 2.1 8.1" stroke="rgba(47,128,237,.95)" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 7v5l3 2" stroke="rgba(47,128,237,.80)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="hisText">부재 이력 관리</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+
+    <!-- CadwinNest -->
+    <div class="box">
+      <div class="title">CadwinNest</div>
+      <div class="sub">자동 네스팅 및 생산 연계</div>
+      <ul>
+        <li>정리된 부재 데이터 수신</li>
+        <li>자동 네스팅 수행</li>
+        <li>절단·가공 공정 연계</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</body>
+</html>
