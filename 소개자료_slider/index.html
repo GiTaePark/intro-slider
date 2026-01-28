@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>소개자료 슬라이더</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { background: #0b1220; overflow: hidden; }
+
+    .topbar {
+      position: fixed; top: 12px; right: 12px; z-index: 9999;
+      display: flex; gap: 10px; align-items: center;
+      padding: 8px 12px; border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9);
+      font: 500 14px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      user-select: none;
+    }
+    .topbar kbd {
+      display: inline-block; padding: 2px 6px; border-radius: 6px;
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.95);
+      font: 600 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .stage {
+      width: 100vw; height: 100vh;
+      position: relative;
+      touch-action: pan-y; /* allow vertical inside iframe if any, but capture horizontal */
+    }
+    .track {
+      height: 100%;
+      display: flex;
+      transition: transform 260ms ease;
+      will-change: transform;
+    }
+    .slide {
+      min-width: 100vw;
+      height: 100%;
+      display: flex;
+      align-items: stretch;
+    }
+    .slide-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #0b1220;
+    }
+
+    .nav {
+      position: fixed;
+      left: 12px;
+      bottom: 12px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.95);
+      font: 600 14px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif;
+      cursor: pointer;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+    .dots {
+      display: flex;
+      gap: 6px;
+      max-width: 50vw;
+      overflow: auto hidden;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(255,255,255,.25);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .dot.active {
+      background: rgba(255,255,255,.85);
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar" aria-hidden="true">
+    <span><span id="cur">1</span> / <span id="total">21</span></span>
+    <span style="opacity:.75">이동:</span>
+    <span><kbd>←</kbd> <kbd>→</kbd></span>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="track" id="track">
+      <div class="slide"><iframe class="slide-frame" src="pages/01.SmartHull_Title.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/02.SmartHull_SmartHullQuestion.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/03.SmartHull_Why.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/04.SmartHull_WORKFLOW_AVEVA.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/05.SmartHull_WORKFLOW_GradeHull.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/06.SmartHull_WORKFLOW_Cadmatic.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/07.SmartHull_Merit.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/08.SmartHull_MainFunctions_ImageOnly.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/09.SmartHull_Interface.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/10.SmartHull_AUTOMATIZE_TextAvoidance.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/11.SmartHull_AUTOMATIZE_TemporaryHole.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/12.SmartHull_AUTOMATIZE_HoleBridge.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/13.SmartHull_AUTOMATIZE_SecondaryPart.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/14.SmartHull_AUTOMATZIE_LPTaper.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/15.SmartHull_ErrorCheck.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/16.SmartHull_PartEdit_2DDraft.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/17.SmartHull_PartEdit_ProfileMacro.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/18.SmartHull_PartHistory.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/19.SmartHull_OUTPUT_Partslist_Weightcog.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/20.SmartHull_DRAWING_manual_cutting_v3_bottom_smaller.html" loading="lazy"></iframe></div>
+      <div class="slide"><iframe class="slide-frame" src="pages/21.SmartHull_THANKYOU.html" loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+  <div class="nav" aria-label="슬라이드 이동">
+    <button class="btn" id="prev" type="button">← 이전</button>
+    <button class="btn" id="next" type="button">다음 →</button>
+    <div class="dots" id="dots" aria-label="페이지"></div>
+  </div>
+
+  <script>
+    const total = Number(document.getElementById('total').textContent);
+    const track = document.getElementById('track');
+    const curEl = document.getElementById('cur');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const dotsEl = document.getElementById('dots');
+    const stage = document.getElementById('stage');
+
+    let index = 0;
+
+    // dots
+    const dots = [];
+    for (let i = 0; i < total; i++) {
+      const b = document.createElement('button');
+      b.className = 'dot' + (i === 0 ? ' active' : '');
+      b.type = 'button';
+      b.title = String(i + 1);
+      b.addEventListener('click', () => go(i));
+      dotsEl.appendChild(b);
+      dots.push(b);
+    }
+
+    function render() {
+      track.style.transform = `translateX(${-index * 100}vw)`;
+      curEl.textContent = String(index + 1);
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === total - 1;
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      // active dot이 보이도록 스크롤
+      const active = dots[index];
+      if (active) {
+        active.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+    }
+
+    function go(i) {
+      index = Math.max(0, Math.min(total - 1, i));
+      render();
+    }
+    function next() { go(index + 1); }
+    function prev() { go(index - 1); }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    // keyboard
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    // touch swipe (horizontal)
+    let startX = 0, startY = 0, dragging = false;
+
+    stage.addEventListener('touchstart', (e) => {
+      if (!e.touches || e.touches.length !== 1) return;
+      dragging = true;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      if (!dragging) return;
+      dragging = false;
+      // no-op
+    }, { passive: true });
+
+    stage.addEventListener('touchmove', (e) => {
+      if (!dragging || !e.touches || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+
+      // 수평 스와이프 의도일 때만 처리
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        dragging = false;
+        if (dx < 0) next(); else prev();
+      }
+    }, { passive: true });
+
+    render();
+  </script>
+</body>
+</html>

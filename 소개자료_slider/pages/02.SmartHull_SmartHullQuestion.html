@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartHull - What is</title>
+  <style>
+
+    :root{
+      --w:1920px; --h:1080px;
+      --bg1:#ffffff; --bg2:#f4f9ff; --bg3:#e7f2ff;
+      --text:#0b1324; --muted:#4b5563;
+      --blue:#2f80ed; --blue2:#67b3ff;
+      --line:rgba(11,19,36,.10);
+      --font:"Noto Sans KR","Segoe UI",Roboto,Helvetica,Arial,"Malgun Gothic",system-ui,sans-serif;
+    }
+
+    html,body{
+      height:100%; margin:0;
+      display:grid; place-items:center;
+      background:#0b1220;
+      font-family:var(--font);
+    }
+
+    .slide{
+      width:var(--w); height:var(--h);
+      position:relative; overflow:hidden;
+      border-radius:16px;
+      background:
+        radial-gradient(1200px 720px at 80% 20%, var(--bg3), transparent 60%),
+        radial-gradient(900px 640px at 15% 85%, var(--bg2), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      box-shadow:0 18px 40px rgba(15,23,42,.12);
+    }
+
+    .wrap{
+      position:absolute; inset:0;
+      padding:96px 120px;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap:44px;
+    }
+
+    h1{
+      margin:0;
+      font-size:72px;
+      letter-spacing:-0.02em;
+      font-weight:800;
+      color:var(--text);
+      display:inline-block;
+      position:relative;
+      padding-bottom:18px;
+    }
+
+    /* underline */
+    h1::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width: 520px;       /* underline length */
+      height: 6px;
+      border-radius:999px;
+      background: linear-gradient(90deg, var(--blue), rgba(47,128,237,.18));
+    }
+
+    .content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:56px;
+      align-items:center;
+    }
+
+    .features{
+      display:grid;
+      gap:26px;
+    }
+
+    .feature{
+      display:grid;
+      grid-template-columns:56px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .icon{
+      width:56px; height:56px;
+      border-radius:14px;
+      background:linear-gradient(135deg, var(--blue), var(--blue2));
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-weight:800;
+      font-size:20px;
+      box-shadow:0 10px 20px rgba(47,128,237,.25);
+    }
+
+    .feature h3{
+      margin:0 0 6px 0;
+      font-size:28px;
+      letter-spacing:-0.01em;
+      color:var(--text);
+    }
+
+    .feature p{
+      margin:0;
+      font-size:22px;
+      line-height:1.5;
+      color:var(--muted);
+    }
+
+    .diagram{
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(11,19,36,.08);
+      border-radius:24px;
+      padding:40px;
+      display:grid;
+      gap:28px;
+    }
+
+    .node{
+      padding: 22px 34px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid rgba(11,19,36,.10);
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .node.blue{
+      background:linear-gradient(180deg, #f0f6ff, #ffffff);
+      border-color:rgba(47,128,237,.35);
+    }
+    .node.emph{
+      font-size: 28px;
+      font-weight: 800;
+      border-color: rgba(47,128,237,.45);
+      box-shadow: 0 16px 28px rgba(47,128,237,.16);
+    }
+    .brand{
+      display: block;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #0b1324;
+      line-height: 1.05;
+    }
+    .node.blue .brand{
+      display: block;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #0b1324;
+      line-height: 1.05;
+    }
+    .brand2{
+      color: #0b1324;
+    }
+    .detail{
+      display: block;
+      margin-top: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #374151;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+
+
+    .arrow{
+      text-align:center;
+      font-size:28px;
+      color:var(--blue);
+    }
+
+    @media (max-width:2100px){
+      .slide{ transform:scale(.8); transform-origin:center; }
+    }
+  
+  </style>
+</head>
+
+<body>
+<section class="slide" aria-label="SmartHull What is">
+  <div class="wrap">
+    <h1>SmartHull?</h1>
+
+    <div class="content">
+      <!-- LEFT -->
+      <div class="features">
+        <div class="feature">
+          <div class="icon">01</div>
+          <div>
+            <h3>설계 이후, 생산을 준비하는 시스템</h3>
+            <p>설계 모델 이후 선체 생산 부재를 기준으로 가공·절단 정보를 정리하고 관리</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="icon">02</div>
+          <div>
+            <h3>설계와 현장을 연결하는 인터페이스</h3>
+            <p>설계 변경과 사람에 의한 오류를 현장 전달 전에 사전 검증</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="icon">03</div>
+          <div>
+            <h3>부재 편집 기능</h3>
+            <p>2D CAD, 부재 추가, 형강 Macro로 모델링 한계를 보완</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="icon">04</div>
+          <div>
+            <h3>자동 생산으로 이어지는 연결 고리</h3>
+            <p>정리된 부재 형상을 CadwinNest 및 현장의 절단 및 가공 공정으로 전달</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="diagram">
+        <div class="node">Design Modeling</div>
+        <div class="arrow">↓</div>
+        <div class="node blue emph"><span class="brand">SmartHull</span><span class="detail">Part management · Validation · Customize · Drawing / Report</span></div>
+        <div class="arrow">↓</div>
+        <div class="node emph"><span class="brand brand2">CadwinNest</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

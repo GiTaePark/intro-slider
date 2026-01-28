@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>SmartHull - Interface</title>
+<style>
+:root{
+  --w:1920px; --h:1080px;
+  --bg1:#ffffff; --bg2:#f4f9ff; --bg3:#e7f2ff;
+  --text:#0b1324; --muted:#4b5563;
+  --blue:#2f80ed;
+  --font:"Noto Sans KR","Segoe UI",Roboto,Helvetica,Arial,"Malgun Gothic",system-ui,sans-serif;
+}
+html,body{
+  height:100%; margin:0;
+  display:grid; place-items:center;
+  background:#0b1220;
+  font-family:var(--font);
+}
+.slide{
+  width:var(--w); height:var(--h);
+  background:
+    radial-gradient(1200px 720px at 80% 18%, var(--bg3), transparent 60%),
+    radial-gradient(900px 640px at 15% 88%, var(--bg2), transparent 55%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  border-radius:16px;
+  padding:96px 120px;
+  box-sizing:border-box;
+  display:grid;
+  grid-template-rows:auto auto 1fr;
+  gap: 26px;
+}
+h1{
+  margin:0;
+  font-size:72px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+}
+.subtitle{
+  margin:0;
+  font-size:26px;
+  color:#1f2937;
+  line-height:1.35;
+}
+.cards{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 1400px;
+  margin: 0 auto;
+gap:32px;
+}
+.card{
+  background:#fff;
+  border-radius:28px;
+  padding:44px 42px;
+  border:1px solid rgba(11,19,36,.08);
+  box-shadow: 0 14px 28px rgba(15,23,42,.08);
+}
+.hrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.hicon{
+  width:34px; height:34px;
+  border-radius:12px;
+  background: rgba(47,128,237,.10);
+  border:1px solid rgba(47,128,237,.18);
+  display:flex; align-items:center; justify-content:center;
+}
+.card h2{
+  margin:0;
+  font-size:36px;
+  font-weight:900;
+}
+.card ul{
+  margin:10px 0 0 0;
+  padding-left:22px;
+  font-size:25px;
+  line-height:1.65;
+}
+
+/* flow section */
+.flowcard{
+  grid-column:1 / -1;
+  margin-top:20px;
+  padding:50px 60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+}
+.pill{
+  padding:18px 28px;
+  border-radius:999px;
+  background: rgba(47,128,237,.08);
+  border:1px solid rgba(47,128,237,.18);
+  font-size:32px;
+  font-weight:900;
+  color:#163a73;
+  white-space:nowrap;
+}
+.arrow{
+  flex:1;
+  height:28px;
+}
+.arrow line{
+  stroke: rgba(47,128,237,.95);
+  stroke-width:4;
+}
+.arrow polygon{
+  fill: rgba(47,128,237,.95);
+}
+
+@media (max-width:2100px){
+  .slide{ transform:scale(.8); transform-origin:center; }
+}
+</style>
+</head>
+<body>
+<section class="slide">
+  <h1>Interface</h1>
+  <p class="subtitle">3D Model 데이터를 Interface하여 SmartHull DB에 추가하는 과정에서 부재 Customize 및 오류 체크로 품질을 사전에 보증</p>
+
+  <div class="cards">
+<div class="card">
+      <div class="hrow">
+        <div class="hicon"></div>
+        <h2>Customize</h2>
+      </div>
+      <ul>
+        <li>문자 회피 로직 적용</li>
+        <li>베벨 심볼 및 Hole Bridge 처리</li>
+        <li>현업 표준 규칙 자동 반영</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="hrow">
+        <div class="hicon"></div>
+        <h2>Error Check</h2>
+      </div>
+      <ul>
+        <li>공통부재 두께·재질 동일성 확인</li>
+        <li>속성 누락 및 불일치 검출</li>
+        <li>검증 결과 리포트 제공</li>
+      </ul>
+    </div>
+
+    <!-- Corrected Flow -->
+    <div class="card flowcard">
+      <span class="pill">3D Model</span>
+      <svg class="arrow" viewBox="0 0 1000 28" preserveAspectRatio="none">
+        <defs>
+          <marker id="arrowhead" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto">
+            <polygon points="0 0, 12 5, 0 10"></polygon>
+          </marker>
+        </defs>
+        <line x1="0" y1="14" x2="980" y2="14" marker-end="url(#arrowhead)"></line>
+      </svg>
+      <span class="pill">SmartHull</span>
+    </div>
+  </div>
+</section>
+</body>
+</html>

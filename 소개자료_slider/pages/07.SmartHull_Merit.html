@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>SmartHull - Merit</title>
+<style>
+:root{
+  --w:1920px; --h:1080px;
+  --bg1:#ffffff; --bg2:#f4f9ff; --bg3:#e7f2ff;
+  --text:#0b1324; --muted:#4b5563;
+  --blue:#2f80ed;
+  --font:"Noto Sans KR","Segoe UI",Roboto,Helvetica,Arial,"Malgun Gothic",system-ui,sans-serif;
+}
+html,body{
+  height:100%; margin:0;
+  display:grid; place-items:center;
+  background:#0b1220;
+  font-family:var(--font);
+}
+.slide{
+  width:var(--w); height:var(--h);
+  background:
+    radial-gradient(1200px 720px at 80% 18%, var(--bg3), transparent 60%),
+    radial-gradient(900px 640px at 15% 88%, var(--bg2), transparent 55%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  border-radius:16px;
+  padding:96px 120px;
+  box-sizing:border-box;
+  display:grid;
+  grid-template-rows:auto auto 1fr;
+  gap: 26px;
+}
+h1{
+  margin:0;
+  font-size:72px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+}
+.subtitle{
+  margin:0;
+  font-size:26px;
+  color:#1f2937;
+  line-height:1.35;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+.cards{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:32px;
+  align-items:stretch;
+}
+.card{
+  background:#fff;
+  border-radius:28px;
+  padding:44px 42px;
+  border:1px solid rgba(11,19,36,.08);
+  box-shadow: 0 14px 28px rgba(15,23,42,.08);
+  display:flex;
+  flex-direction:column;
+}
+.hrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin: 0 0 12px 0;
+}
+.hicon{
+  width:34px;
+  height:34px;
+  border-radius: 12px;
+  background: rgba(47,128,237,.10);
+  border: 1px solid rgba(47,128,237,.18);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex: 0 0 auto;
+}
+.hicon svg{ width:20px; height:20px; }
+.card h2{
+  margin:0;
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:-0.01em;
+}
+.card ul{
+  margin: 6px 0 0 0;
+  padding-left:22px;
+  font-size:25px;
+  line-height:1.65;
+  color:#1f2937;
+}
+.card li{ margin:10px 0; }
+
+@media (max-width:2100px){
+  .slide{ transform:scale(.8); transform-origin:center; }
+}
+</style>
+</head>
+
+<body>
+<section class="slide">
+  <h1>Merit?</h1>
+  <p class="subtitle">SmartHull 도입을 통해 리드타임·인력·품질·연계 관점에서 생산 체계를 “수작업 중심”에서 “시스템 기반”으로 전환</p>
+
+  <div class="cards">
+    <!-- Lead time -->
+    <div class="card">
+      <div class="hrow">
+        <span class="hicon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 7v5l3 2" stroke="rgba(47,128,237,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 22a10 10 0 1 0-10-10" stroke="rgba(47,128,237,.95)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2>생산 리드타임 단축</h2>
+      </div>
+      <ul>
+        <li>설계 변경 시 즉시 재정리</li>
+        <li>현도·재작업 최소화</li>
+        <li>생산 전달 속도 향상</li>
+      </ul>
+    </div>
+
+    <!-- Manpower -->
+    <div class="card">
+      <div class="hrow">
+        <span class="hicon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M16 11a4 4 0 1 0-8 0" stroke="rgba(47,128,237,.95)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 20c1.6-3.2 4.5-5 8-5s6.4 1.8 8 5" stroke="rgba(47,128,237,.95)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2>인력 효율 향상</h2>
+      </div>
+      <ul>
+        <li>숙련자 의존 감소</li>
+        <li>작업 표준화</li>
+        <li>동일 인력 생산성 향상</li>
+      </ul>
+    </div>
+
+    <!-- Quality -->
+    <div class="card">
+      <div class="hrow">
+        <span class="hicon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4Z"
+                  stroke="rgba(47,128,237,.95)" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-5" stroke="rgba(47,128,237,.95)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h2>품질 안정성 확보</h2>
+      </div>
+      <ul>
+        <li>사전 오류 검증</li>
+        <li>부재 이력 관리</li>
+        <li>품질 재현성 확보</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</body>
+</html>
